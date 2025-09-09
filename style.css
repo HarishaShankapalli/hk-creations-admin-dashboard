@@ -1,0 +1,223 @@
+/* General Page Styling */
+/* General Body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  text-align: center;
+  background: #ff6f61;
+  color: white;
+  padding: 20px;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  margin-top: 5px;
+  font-size: 1.2rem;
+}
+
+/* Logout Button (Admin Dashboard) */
+#logoutBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: #ff6f61;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#logoutBtn:hover {
+  background-color: #ffe6dc;
+}
+
+/* Auth Pages (Login/Register) */
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff6f61;
+}
+
+.auth-container form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.auth-container form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.auth-container form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff6f61;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-container form button:hover {
+  background-color: #e65c3b;
+}
+
+.auth-container form p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.auth-container form a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Admin Dashboard */
+main {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+#uploadForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+#uploadForm input, #uploadForm button {
+  flex: 1 1 200px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#uploadForm button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#uploadForm button:hover {
+  background-color: #e65c3b;
+}
+
+/* Designs Grid (Admin & Public) */
+.gallery, #admin-list, #designs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.design-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.design-card:hover {
+  transform: scale(1.05);
+}
+
+.design-card img {
+  width: 100%;
+  height: auto;
+}
+
+.design-card h3 {
+  margin: 10px 0 5px;
+  color: #ff6f61;
+}
+
+.design-card p {
+  margin: 5px 0;
+  font-weight: bold;
+  color: #555;
+}
+
+.design-card .delete-btn {
+  padding: 8px 12px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+.design-card .delete-btn:hover {
+  background-color: #e60000;
+}
+
+/* Public Designs Page */
+.designs-grid {
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #ff6f61;
+  color: white;
+}
+#searchInput {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  flex: 1 1 200px;
+}
+.filter-container {
+  max-width: 400px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+

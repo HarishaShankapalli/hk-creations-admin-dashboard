@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Image Upload - HK CREATIONS</title>
+</head>
+<body>
+  <h1>Test Image Upload</h1>
+  <input type="file" id="testImage" accept="image/*">
+  <button id="uploadBtn">Upload Image</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCpxmjyNTbdOwm_L7gfetvxjDK6YquH5Wc",
+      authDomain: "hk-creations-f8a81.firebaseapp.com",
+      projectId: "hk-creations-f8a81",
+      storageBucket: "hk-creations-f8a81.appspot.com",
+      messagingSenderId: "666783895080",
+      appId: "1:666783895080:web:9965807dd2a90197c32f1d",
+      measurementId: "G-RSRB93817J"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    const uploadBtn = document.getElementById("uploadBtn");
+    const testImage = document.getElementById("testImage");
+
+    uploadBtn.addEventListener("click", async () => {
+      const file = testImage.files[0];
+      if (!file) {
+        alert("Please select an image first!");
+        return;
+      }
+
+      try {
+        // Upload to Storage
+        const storageRef = ref(storage, "test-images/" + Date.now() + "-" + file.name);
+        await uploadBytes(storageRef, file);
+        const imageUrl = await getDownloadURL(storageRef);
+
+        // Save document in Firestore
+        const docRef = await addDoc(collection(db, "designs"), {
+          name: "Test Design",
+          code: "TST001",
+          category: "Test",
+          imageUrl: imageUrl
+        });
+
+        alert("✅ Dummy image uploaded successfully! Doc ID: " + docRef.id);
+      } catch (err) {
+        console.error(err);
+        alert("❌ Error: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

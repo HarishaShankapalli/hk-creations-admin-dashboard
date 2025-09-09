@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HK CREATIONS - Embroidery Designs</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDKs -->
+<script type="module">
+  // Import the Firebase SDKs we need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+
+  // Your web app's Firebase configuration (copy from Firebase Console)
+  const firebaseConfig = {
+    apiKey: "AIzaSyCpxmjyNTbdOwm_L7gfetvxjDK6YquH5Wc",
+    authDomain: "hk-creations-f8a81.firebaseapp.com",
+    projectId: "hk-creations-f8a81",
+    storageBucket:"hk-creations-f8a81.appspot.com",
+    messagingSenderId: "666783895080",
+    appId: "1:666783895080:web:9965807dd2a90197c32f1d",
+    measurementId: "G-RSRB93817J"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  // Make them available globally
+  window.auth = auth;
+  window.db = db;
+  window.storage = storage;
+</script>
+
+</head>
+<body>
+  <header>
+    <h1>HK CREATIONS</h1>
+    <p>Beautiful Computer Embroidery Patterns</p>
+  </header>
+
+  <main>
+    <section class="gallery">
+      <div class="design-card">
+        <img src="images/design1.jpg" alt="Design 1">
+        <p>Design #001</p>
+      </div>
+      <div class="design-card">
+        <img src="images/design2.jpg" alt="Design 2">
+        <p>Design #002</p>
+      </div>
+      <div class="design-card">
+        <img src="images/design3.jpg" alt="Design 3">
+        <p>Design #003</p>
+      </div>
+      <!-- Add more designs here -->
+    </section>
+  </main>
+
+  <footer>
+    <p>Contact: +91-XXXXXXXXXX | WhatsApp Available</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

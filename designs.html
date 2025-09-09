@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HK CREATIONS — Embroidery Designs</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCpxmjyNTbdOwm_L7gfetvxjDK6YquH5Wc",
+    authDomain: "hk-creations-f8a81.firebaseapp.com",
+    projectId: "hk-creations-f8a81",
+    storageBucket:"hk-creations-f8a81.appspot.com",
+    messagingSenderId: "666783895080",
+    appId: "1:666783895080:web:9965807dd2a90197c32f1d",
+    measurementId: "G-RSRB93817J"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const designsContainer = document.getElementById("designs-container");
+  const categoryFilter = document.getElementById("categoryFilter");
+  const searchInput = document.getElementById("searchInput");
+
+  let allDesigns = [];
+
+  async function loadDesigns(){
+    designsContainer.innerHTML = "";
+    allDesigns = [];
+    const querySnapshot = await getDocs(collection(db, "designs"));
+    querySnapshot.forEach(docSnap => {
+      const data = docSnap.data();
+      allDesigns.push(data);
+    });
+    displayDesigns(allDesigns);
+  }
+
+  function displayDesigns(designs){
+    designsContainer.innerHTML = "";
+    designs.forEach(data => {
+      const card = document.createElement("div");
+      card.classList.add("design-card");
+      card.innerHTML = `
+        <img src="${data.imageURL}" alt="${data.name}" />
+        <h3>${data.name}</h3>
+        <p>Code: ${data.code}</p>
+        <p>Category: ${data.category}</p>
+      `;
+      designsContainer.appendChild(card);
+    });
+  }
+
+  function filterDesigns(){
+    const category = categoryFilter.value;
+    const searchText = searchInput.value.toLowerCase();
+
+    let filtered = allDesigns;
+
+    if(category !== "all"){
+      filtered = filtered.filter(d => d.category === category);
+    }
+
+    if(searchText){
+      filtered = filtered.filter(d => 
+        d.name.toLowerCase().includes(searchText) || 
+        d.code.toLowerCase().includes(searchText)
+      );
+    }
+
+    displayDesigns(filtered);
+  }
+
+  categoryFilter.addEventListener("change", filterDesigns);
+  searchInput.addEventListener("input", filterDesigns);
+
+  document.addEventListener("DOMContentLoaded", loadDesigns);
+</script>
+</head>
+<body>
+  <header>
+    <h1>HK CREATIONS — Embroidery Designs</h1>
+  </header>
+
+  <main>
+    <div class="filter-container">
+    <input type="text" id="searchInput" placeholder="Search by name or code..." />
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter">
+      <option value="all">All</option>
+      <option value="Flowers">Flowers</option>
+      <option value="Borders">Borders</option>
+      <option value="Motifs">Motifs</option>
+      <!-- Add more categories as needed -->
+    </select>
+  </div>
+
+  <section id="designs-container" class="designs-grid"></section>
+  </main>
+</body>
+</html>
