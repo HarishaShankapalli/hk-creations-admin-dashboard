@@ -1,1 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Flower Embroidery",
+    "code": "FL-001",
+    "category": "Flowers",
+    "imageUrl": "https://raw.githubusercontent.com/HarishaShankapalli/hk-creations-admin-dashboard/main/images/flower.jpg"
+  }
+]
 
